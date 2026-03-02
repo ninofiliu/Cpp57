@@ -1,0 +1,5 @@
+1. Setup un acteur en cpp, un field int qui définit l'id de la "règle"
+2. au beginplay: init l'array (32 cells, cell#16 = alive, sinon dead)
+3. à chaque frame: itérer la règle de l'automate elementaire de wolfram
+
+display: via des logs (...XX..XXX...)
