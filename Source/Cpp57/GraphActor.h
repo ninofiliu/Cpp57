@@ -22,9 +22,12 @@ class CPP57_API AGraphActor : public AActor
     GENERATED_BODY()
 
 public:
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph")
     TArray<AActor *> Nodes;
 
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph")
     TArray<FGraphEdge> Edges;
+
+    UFUNCTION(CallInEditor, Category = "Graph")
+    void DrawDebug();
 };
