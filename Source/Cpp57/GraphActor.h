@@ -2,6 +2,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Engine/StaticMesh.h"
 #include "GraphActor.generated.h"
 
 USTRUCT(BlueprintType)
@@ -27,6 +28,12 @@ public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph")
     TArray<FGraphEdge> Edges;
+
+    UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Graph")
+    UStaticMesh *EdgeMesh = nullptr;
+
+    UFUNCTION(CallInEditor, Category = "Graph")
+    void ConstructEdges();
 
     UFUNCTION(CallInEditor, Category = "Graph")
     void DrawDebug();
