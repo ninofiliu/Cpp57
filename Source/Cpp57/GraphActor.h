@@ -30,4 +30,7 @@ public:
 
     UFUNCTION(CallInEditor, Category = "Graph")
     void DrawDebug();
+
+    UFUNCTION(CallInEditor, Category = "Graph")
+    void RunBFS();
 };
