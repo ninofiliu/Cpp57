@@ -6,6 +6,18 @@
 #include "GameFramework/Actor.h"
 #include "SimpleGraph.generated.h"
 
+USTRUCT(BlueprintType)
+struct FGraphEdge
+{
+	GENERATED_BODY()
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor *From = nullptr;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	AActor *To = nullptr;
+};
+
 UCLASS()
 class CPP57_API ASimpleGraph : public AActor
 {
@@ -13,6 +25,12 @@ class CPP57_API ASimpleGraph : public AActor
 
 public:
 	ASimpleGraph();
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SimpleGraph")
+	TArray<AActor *> Nodes;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "SimpleGraph")
+	TArray<FGraphEdge> Edges;
 
 protected:
 	virtual void BeginPlay() override;
