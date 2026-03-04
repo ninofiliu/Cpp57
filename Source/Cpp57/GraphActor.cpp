@@ -1,6 +1,7 @@
 #include "GraphActor.h"
 #include "DrawDebugHelpers.h"
 #include "Components/StaticMeshComponent.h"
+#include "Algo/Reverse.h"
 
 static const FName EdgeMeshTag = FName("GraphEdgeMesh");
 
@@ -87,11 +88,11 @@ void AGraphActor::RunBFS()
 
     TSet<AActor *> Visited;
     TQueue<AActor *> Queue;
+    TMap<AActor *, AActor *> Froms;
 
     AActor *Start = Nodes[0];
     Visited.Add(Start);
     Queue.Enqueue(Start);
-    DrawDebugSphere(GetWorld(), Start->GetActorLocation(), 100.f, 16, FColor::Cyan, false, 5.f);
 
     while (!Queue.IsEmpty())
     {
@@ -107,11 +108,22 @@ void AGraphActor::RunBFS()
             if (!Neighbor || Visited.Contains(Neighbor))
                 continue;
 
+            Froms.Add(Neighbor, Current);
             Visited.Add(Neighbor);
             Queue.Enqueue(Neighbor);
-
-            DrawDebugSphere(GetWorld(), Neighbor->GetActorLocation(), 100.f, 16, FColor::Green, false, 5.f);
-            DrawDebugLine(GetWorld(), Current->GetActorLocation(), Neighbor->GetActorLocation(), FColor::Green, false, 5.f, 0, 30.f);
         }
+    }
+
+    TArray<AActor *> Path;
+    Path.Add(Nodes.Last());
+    while (AActor **FromPtr = Froms.Find(Path.Last()))
+    {
+        Path.Add(*FromPtr);
+    }
+    Algo::Reverse(Path);
+
+    for (auto Node : Path)
+    {
+        DrawDebugSphere(GetWorld(), Node->GetActorLocation(), 100.f, 16, FColor::Green, false, 5.f);
     }
 }
