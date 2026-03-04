@@ -34,4 +34,7 @@ public:
 
   UFUNCTION(BlueprintCallable, CallInEditor, Category = "Graph")
   void BFS();
+
+  UFUNCTION(BlueprintCallable, CallInEditor, Category = "Graph")
+  void PathFind();
 };
