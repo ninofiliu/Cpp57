@@ -50,5 +50,3 @@ void ADemoTimers3::BeginPlay() {
   Super::BeginPlay();
   Run(this);
 }
-
-void ADemoTimers3::Tick(float DeltaTime) { Super::Tick(DeltaTime); }

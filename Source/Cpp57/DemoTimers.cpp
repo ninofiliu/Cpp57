@@ -14,5 +14,3 @@ void ADemoTimers::BeginPlay() {
           this, [this]() { UE_LOG(LogTemp, Log, TEXT("[timers] ...1")); }),
       3.0f, false);
 }
-
-void ADemoTimers::Tick(float DeltaTime) { Super::Tick(DeltaTime); }

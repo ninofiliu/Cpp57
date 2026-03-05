@@ -8,8 +8,12 @@ void ADemoTimers2::BeginPlay() {
 
   UE_LOG(LogTemp, Log, TEXT("[timers] 2..."));
   FTimerHandle DelayHandle;
-  GetWorldTimerManager().SetTimer(DelayHandle, this, &ADemoTimers2::OnDelayEnd,
-                                  3.0f, false);
+  GetWorldTimerManager().SetTimer(DelayHandle, // to cancel
+                                  this,        // callback instance
+                                  &ADemoTimers2::OnDelayEnd, // callback method
+                                  3.0f,                      // delay time
+                                  false                      // loop
+  );
 }
 
 void ADemoTimers2::OnDelayEnd() { UE_LOG(LogTemp, Log, TEXT("[timers] ...2")); }
